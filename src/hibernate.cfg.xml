@@ -2,13 +2,16 @@
 <!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
   <session-factory>
-    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/accesodatos?zeroDateTimeBehavior=convertToNull</property>
+    <property name="hibernate.dialect">org.hibernate.dialect.OracleDialect</property>
+    <property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+    <property name="hibernate.connection.url">jdbc:oracle:thin:@127.0.0.1:3309:colegio</property>
     <property name="hibernate.connection.username">nombre_alumno</property>
     <property name="hibernate.connection.password">familia</property>
+    <property name="show_sql">true</property>
+    
     <mapping resource="entidades/alumno.hbm.xml"/>
     <mapping resource="entidades/profesor.hbm.xml"/>
     <mapping resource="entidades/modulo.hbm.xml"/>
+    
   </session-factory>
 </hibernate-configuration>

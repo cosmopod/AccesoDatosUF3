@@ -1,12 +1,13 @@
 package entidades;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  *
  * @author paco
  */
-public class Alumno {
+public class Alumno implements Serializable{
     
     public int id;
     public String nombre;

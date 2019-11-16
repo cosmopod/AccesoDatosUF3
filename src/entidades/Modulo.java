@@ -1,10 +1,12 @@
 package entidades;
 
+import java.io.Serializable;
+
 /**
  *
  * @author paco
  */
-public class Modulo {
+public class Modulo implements Serializable {
 
     public int id;
     public String nombre;

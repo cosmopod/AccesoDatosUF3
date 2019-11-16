@@ -5,10 +5,41 @@
  */
 package persistence;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author paco
  */
 public class PersistenceManager {
-    
+
+    public static void SaveToBinaryFile(Serializable serializableObject, String path){
+        
+        try {
+            
+            String objectName = serializableObject.getClass().getSimpleName();
+            String stringPath = path != null ? path : "" + objectName + ".txt";
+            File objectFile = new File(stringPath);
+            
+        
+            FileOutputStream fileOutStream = new FileOutputStream(objectFile);
+            ObjectOutputStream objectOutStream = new ObjectOutputStream(fileOutStream);
+            
+            objectOutStream.writeObject(serializableObject);
+            objectOutStream.close();
+            
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(PersistenceManager.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(PersistenceManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+    }
 }

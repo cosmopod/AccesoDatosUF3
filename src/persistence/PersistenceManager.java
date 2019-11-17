@@ -20,26 +20,26 @@ import java.util.logging.Logger;
  */
 public class PersistenceManager {
 
-    public static void SaveToBinaryFile(Serializable serializableObject, String path){
-        
+    public static void SaveToBinaryFile(Serializable serializableObject, String filePath) {
+
+        //Creamos el objeto file con la ruta que le pasamos por parametro
+        File objectFile = new File(filePath);
         try {
-            
-            String objectName = serializableObject.getClass().getSimpleName();
-            String stringPath = path != null ? path : "" + objectName + ".txt";
-            File objectFile = new File(stringPath);
-            
-        
-            FileOutputStream fileOutStream = new FileOutputStream(objectFile);
-            ObjectOutputStream objectOutStream = new ObjectOutputStream(fileOutStream);
-            
-            objectOutStream.writeObject(serializableObject);
-            objectOutStream.close();
-            
-        } catch (FileNotFoundException ex) {
+
+            //creamos flujo de escritura de objeto en el archivo
+            FileOutputStream fileStream = new FileOutputStream(objectFile, true);
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileStream);
+            objectOutputStream.writeObject(serializableObject);
+
+            //cerramos el flujo de escritura de archivo
+            objectOutputStream.close();
+            fileStream.close();
+
+        } catch (FileNotFoundException ex) { //Control de excepciones
             Logger.getLogger(PersistenceManager.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(PersistenceManager.class.getName()).log(Level.SEVERE, null, ex);
         }
-            
+
     }
 }
